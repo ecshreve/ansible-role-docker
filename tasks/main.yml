@@ -24,7 +24,7 @@
 
 - name: Update apt and install docker-ce
   ansible.builtin.apt:
-    name: {{ docker_ce_package }}
+    name: "{{ docker_ce_package }}"
     state: present
     update_cache: true
   notify: Restart docker
