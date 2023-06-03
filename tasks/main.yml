@@ -28,11 +28,14 @@
   ansible.builtin.apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
+  ignore_errors: "{{ ansible_check_mode }}"
+
 
 - name: Add Docker Repository
   ansible.builtin.apt_repository:
     repo: deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
     state: present
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Update apt and install docker-ce
   ansible.builtin.apt:
@@ -40,12 +43,14 @@
     state: present
     update_cache: true
   notify: Restart docker
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Install Docker Module for Python
   ansible.builtin.pip:
     executable: pip3
     name: docker
   notify: Restart docker
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Ensure /etc/docker/ directory exists.
   ansible.builtin.file:
@@ -53,6 +58,7 @@
     state: directory
     mode: 0755
   when: docker_daemon_options.keys() | length > 0
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Configure Docker daemon options.
   ansible.builtin.copy:
@@ -61,3 +67,4 @@
     mode: 0644
   when: docker_daemon_options.keys() | length > 0
   notify: Restart docker
+  ignore_errors: "{{ ansible_check_mode }}"
