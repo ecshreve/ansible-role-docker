@@ -1,7 +1,7 @@
-Role Name
+ecshreve.docker
 =========
 
-Minimal role to install docker on a host. Intended for use in my homelab.
+minimal role to install docker on a ubuntu host
 
 Requirements
 ------------
@@ -16,18 +16,14 @@ None
 Role Variables
 --------------
 
-Available variables are listed below, along with default values (see `defaults/main.yml`):
-
 ```yaml 
 docker_ce_package: "docker-ce"
 ```
 The name of the docker package to install. This can be used to install a specific version of docker.
 
+
 ```yaml
-docker_daemon_options:
-  insecure-registries:
-    - "registry.example.com"
-    - "registry.example.com:5000"
+docker_daemon_options: {}
 ```
 Custom `dockerd` options can be configured through this dictionary representing the json file `/etc/docker/daemon.json`.
 
