@@ -3,10 +3,10 @@ galaxy_info:
   description: Minimal role to install Docker on Ubuntu.
   license: MIT
   min_ansible_version: "2.15"
+  role_name: docker
   platforms:
   - name: Ubuntu
     versions:
-    - focal
     - jammy
   galaxy_tags:
   - docker
