@@ -1,12 +1,13 @@
 galaxy_info:
   author: Eric Shreve
-  description: Minimal role to install Docker on Ubuntu.
+  description: minimal role to install docker on ubuntu
   license: MIT
   min_ansible_version: "2.15"
   role_name: docker
   platforms:
   - name: Ubuntu
     versions:
+    - focal
     - jammy
   galaxy_tags:
   - docker
