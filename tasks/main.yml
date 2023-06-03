@@ -12,6 +12,18 @@
     state: absent
     update-cache: true
 
+- name: Ensure dependencies ARE installed
+  ansible.builtin.package:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - gnupg
+      - curl
+      - python3
+      - python3-pip
+    state: present
+    update-cache: true
+
 - name: Add Docker GPG apt Key
   ansible.builtin.apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
@@ -28,12 +40,6 @@
     state: present
     update_cache: true
   notify: Restart docker
-
-- name: Update apt and install pip3
-  ansible.builtin.apt:
-    name: python3-pip
-    state: present
-    update_cache: true
 
 - name: Install Docker Module for Python
   ansible.builtin.pip:
