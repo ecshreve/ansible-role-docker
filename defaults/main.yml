@@ -2,3 +2,5 @@
 # defaults file for ansible-role-docker
 docker_ce_package: docker-ce
 docker_daemon_options: {}
+manage_docker_service: true
+

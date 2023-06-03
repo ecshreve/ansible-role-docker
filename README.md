@@ -29,6 +29,11 @@ docker_daemon_options: {}
 ```
 Custom `dockerd` options can be configured through this dictionary representing the json file `/etc/docker/daemon.json`.
 
+```yaml
+manage_docker_service: true
+```
+Whether or not to manage the docker service. If set to `false`, the docker service will not be restarted when the configuration changes.
+
 
 Example Playbook
 ----------------
@@ -37,6 +42,7 @@ Example Playbook
 - hosts: all
   vars:
     docker_ce_package: "docker-ce=5:23.0.1-1~ubuntu.20.04~focal"
+    manage_docker_service: false
     docker_daemon_options:
       insecure-registries:
         - "registry.example.com"

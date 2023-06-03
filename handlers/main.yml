@@ -5,4 +5,5 @@
     name: docker
     state: restarted
     enabled: true
+  when: manage_docker_service | bool
   ignore_errors: "{{ ansible_check_mode }}"
