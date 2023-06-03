@@ -1,2 +1,57 @@
 ---
 # tasks file for ansible-role-docker
+- name: Ensure old versions of Docker are NOT installed
+  ansible.builtin.package:
+    name:
+      - docker
+      - docker-engine
+      - docker
+      - docker.io
+      - containerd
+      - runc
+    state: absent
+    update-cache: true
+
+- name: Add Docker GPG apt Key
+  ansible.builtin.apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker Repository
+  ansible.builtin.apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+    state: present
+
+- name: Update apt and install docker-ce
+  ansible.builtin.apt:
+    name: {{ docker_ce_package }}
+    state: present
+    update_cache: true
+  notify: Restart docker
+
+- name: Update apt and install pip3
+  ansible.builtin.apt:
+    name: python3-pip
+    state: present
+    update_cache: true
+
+- name: Install Docker Module for Python
+  ansible.builtin.pip:
+    executable: pip3
+    name: docker
+  notify: Restart docker
+
+- name: Ensure /etc/docker/ directory exists.
+  ansible.builtin.file:
+    path: /etc/docker
+    state: directory
+    mode: 0755
+  when: docker_daemon_options.keys() | length > 0
+
+- name: Configure Docker daemon options.
+  ansible.builtin.copy:
+    content: "{{ docker_daemon_options | to_nice_json }}"
+    dest: /etc/docker/daemon.json
+    mode: 0644
+  when: docker_daemon_options.keys() | length > 0
+  notify: Restart docker
