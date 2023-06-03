@@ -1,5 +1,7 @@
-ecshreve.docker
+ansible role ecshreve.docker
 =========
+
+[![Galaxy Release](https://github.com/ecshreve/ansible-role-docker/actions/workflows/galaxy-release.yml/badge.svg)](https://github.com/ecshreve/ansible-role-docker/actions/workflows/galaxy-release.yml)
 
 minimal role to install docker on a ubuntu host
 
