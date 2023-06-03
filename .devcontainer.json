@@ -1,0 +1,9 @@
+{
+	"name": "dockbox",
+	"image": "ecshreve/devbox",
+	"features": {
+		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+	},
+	"runArgs": ["--hostname", "dockbox"],
+	"remoteUser": "eric"
+}
