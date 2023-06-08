@@ -48,7 +48,6 @@
   ansible.builtin.pip:
     executable: pip3
     name: docker
-  notify: Restart docker
   ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Ensure /etc/docker/ directory exists.

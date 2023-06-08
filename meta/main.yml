@@ -14,4 +14,6 @@ galaxy_info:
   - container
   - orchestration
   - devops
+  - bootstrap
+  - config
 dependencies: []
