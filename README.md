@@ -42,7 +42,7 @@ Example Playbook
 - hosts: all
   vars:
     docker_ce_package: "docker-ce=5:23.0.1-1~ubuntu.20.04~focal"
-    manage_docker_service: false
+    manage_docker_service: true
     docker_daemon_options:
       insecure-registries:
         - "registry.example.com"
