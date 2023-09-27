@@ -1,5 +1,0 @@
-{
-		"image": "ecshreve/devcon-base",
-		"name": "dockbox",
-		"runArgs": ["--hostname", "dock", "--name", "dock"]
-	}
